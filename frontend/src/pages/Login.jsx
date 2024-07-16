@@ -24,7 +24,7 @@ export function Login() {
             });
             console.log('Login request successful.');
             setData({email: '', password: ''});
-           await navigate('/dashboard', { replace: true });
+           await navigate('/dashboard');
             toast.success(response.data.message);
         } catch (error) {
             console.log('Error occurred during login:', error);

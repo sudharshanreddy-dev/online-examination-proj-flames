@@ -1,12 +1,18 @@
-import {UserContext} from "./userContext.jsx";
-import {useContext} from "react";
-import {Navigate} from "react-router-dom";
+import { UserContext } from "./userContext.jsx";
+import { useContext } from "react";
+import { Navigate } from "react-router-dom";
 
-export function PrivateRoute({children}) {
-    const {user} = useContext(UserContext)
-    if (!user) {
+export function PrivateRoute({ children }) {
+    const { user, loading } = useContext(UserContext);
 
-        return <Navigate to="/login"/>
+
+    if (loading) {
+        return <div>Loading...</div>; // Show a loading indicator or null
     }
-    return children
+
+    if (!user) {
+        return <Navigate to="/login" />;
+    }
+
+    return children;
 }

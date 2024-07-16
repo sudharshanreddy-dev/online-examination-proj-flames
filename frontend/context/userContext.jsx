@@ -5,13 +5,14 @@ import axios from "axios";
 export const UserContext = createContext({});
 
 export function UserContextProvider({ children }) {
+    const [loading, setLoading] = useState(true); // Add loading state
     const [user, setUser] = useState(() => {
         // Initialize state from local storage if available
         const savedUser = localStorage.getItem('user');
         return savedUser ? JSON.parse(savedUser) : null;
     });
 
-    const navigate = useNavigate(); // Correctly use useNavigate here
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (!user) {
@@ -21,7 +22,12 @@ export function UserContextProvider({ children }) {
                 })
                 .catch(error => {
                     console.error('Error fetching profile:', error);
+                })
+                .finally(() => {
+                    setLoading(false); // Set loading to false after fetching
                 });
+        } else {
+            setLoading(false); // If user is already set, stop loading
         }
     }, []); // Empty dependency array to run only once on mount
 
@@ -36,20 +42,13 @@ export function UserContextProvider({ children }) {
 
     const logout = async () => {
         try {
-            // Optional: Inform the server that the user is logging out
-            // Ensure this endpoint exists
             await axios.post('/logout');
-
-            // Clear user state and local storage
-            await setUser(null);
-            await localStorage.removeItem('user');
-            await localStorage.removeItem('answers');
-            await localStorage.removeItem('selectedCourse');
-            await sessionStorage.clear();
-
-
-            // Redirect to login page
-            await navigate('/login');
+            setUser(null);
+            localStorage.removeItem('user');
+            localStorage.removeItem('answers');
+            localStorage.removeItem('selectedCourse');
+            sessionStorage.clear();
+            navigate('/login');
             setTimeout(() => {
                 window.location.reload();
             }, 100);
@@ -59,7 +58,7 @@ export function UserContextProvider({ children }) {
     };
 
     return (
-        <UserContext.Provider value={{ user, setUser, logout }}>
+        <UserContext.Provider value={{ user, setUser, logout, loading }}>
             {children}
         </UserContext.Provider>
     );

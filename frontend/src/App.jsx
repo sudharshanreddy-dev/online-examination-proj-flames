@@ -1,13 +1,12 @@
 import { useState } from 'react'
 import './App.css'
 import { Routes, Route } from "react-router-dom";
-import { Navbar } from "./components/Navbar.jsx";
+import { UserContextProvider } from "../context/userContext.jsx";
 import { Home } from "./pages/Home.jsx";
 import { Login } from "./pages/Login.jsx";
 import { Register } from "./pages/Register.jsx";
 import axios from "axios";
 import { Toaster } from "react-hot-toast";
-import { UserContextProvider } from "../context/userContext.jsx";
 import { PrivateRoute } from "../context/PrivateRoute.jsx";
 import { Dashboard } from "./pages/Dashboard.jsx";
 import {Test} from "./pages/Test.jsx";
