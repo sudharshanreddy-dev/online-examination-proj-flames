@@ -1,0 +1,33 @@
+[{
+  "_id": {
+    "$oid": "669496b5b51eaba315767db8"
+  },
+  "c_id": "networks",
+  "questions": [
+    "What is a computer network? Explain its main purposes.",
+    "What are the advantages and disadvantages of a star topology?",
+    "Describe the functions of a router, switch, and hub in a network."
+  ]
+},
+{
+  "_id": {
+    "$oid": "6694a53fb51eaba315767dba"
+  },
+  "c_id": "os",
+  "questions": [
+    "Describe the role and functions of an operating system in a computer system.",
+    "Explain the concept of processes and threads and their differences.",
+    "Explain the concept of paging and how it helps in managing memory."
+  ]
+},
+{
+  "_id": {
+    "$oid": "6694eedeb51eaba315767dbd"
+  },
+  "c_id": "compiler design",
+  "questions": [
+    "Explain the different phases of a compiler.",
+    "What is a context-free grammar? How is it used in compiler design?",
+    "What is the purpose of type checking?"
+  ]
+}]
