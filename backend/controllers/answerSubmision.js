@@ -17,7 +17,7 @@ const answerSubmission = async (req, res) => {
     console.log("course:", course);
     console.log("answers:", answers);
     // Define the user for submission
-    const user = 'sudharshan@gmail.com';
+    const user = req.query.user.email;
 
     // Log course, answers, and user for debugging
     console.log("course:", course);

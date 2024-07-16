@@ -35,20 +35,7 @@ export function Navbar() {
                             >
                                 Home
                             </NavLink>
-                            <NavLink
-                                to="/"
-                                className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900"
 
-                            >
-                                About
-                            </NavLink>
-                            <NavLink
-                                to="/"
-                                className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900"
-
-                            >
-                                Contact
-                            </NavLink>
                         </div>
                     </div>
                     <div className="hidden md:flex md:items-center">

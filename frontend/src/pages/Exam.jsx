@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import {UserContext} from "../../context/userContext.jsx";
 import {toast} from "react-hot-toast";
 import LoadingBanner from "../components/LoadingBanner.jsx";
+import {Logo} from "../components/Logo.jsx";
 
 import axios from "axios";
 
@@ -13,6 +14,7 @@ const ExamComponent = () => {
     const { selectedCourse, setSelectedCourse } = useCourse();
     const {user} = useContext(UserContext);
     const [isLoading, setIsLoading] = useState(false);
+
 
     useEffect(() => {
         // Check if selectedCourse is empty and try to get it from local storage
@@ -68,7 +70,7 @@ const ExamComponent = () => {
         setIsLoading(true); // Set the loading state to true
         console.log(selectedCourse);
         console.log(answers);
-        const user = 'kappa'; // Replace with the actual user variable if available
+         // Replace with the actual user variable if available
         axios.post(`/submit?course=${selectedCourse}`, { user, answers })
             .then((response) => {
                 console.log(response.data)
@@ -94,10 +96,10 @@ const ExamComponent = () => {
 
             <LoadingBanner isLoading={isLoading} />
             <div className="flex justify-between items-center p-4 bg-gray-800">
-                <div className="text-xl font-bold">Logo</div>
+                <Logo/>
                 <div className="text-right">
-                     <div className="text-lg">user.name</div>
-                    <div className="text-sm text-gray-400">user.email</div>
+                     <div className="text-lg">{user.name}</div>
+                    <div className="text-sm text-gray-400">{user.email}</div>
                 </div>
             </div>
 

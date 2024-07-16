@@ -3,6 +3,10 @@ import Card from "../components/Card.jsx";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {useCourse} from "../../context/courseContext.jsx";
+import {NavbarLog} from "../components/NavbarLog.jsx";
+
+
+
 
 export function Test() {
 
@@ -27,6 +31,7 @@ export function Test() {
 
     return (
         <>
+            <NavbarLog/>
 
             <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

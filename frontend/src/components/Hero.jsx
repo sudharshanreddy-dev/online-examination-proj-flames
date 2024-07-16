@@ -36,10 +36,10 @@ export function Hero() {
                         </div>
                         <div className="text-center">
                             <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-                                Practice Theory Questions From Various Boards  To Ace Your Exams.
+                                Check Your Knowledge In CSE
                             </h1>
                             <p className="mt-6 text-lg leading-8 text-gray-600">
-                                Your go-to platform for theory exam questions across CBSE, ICSE, and more. Boost your preparation and ace your exams with confidence.
+                                Your go-to platform for testing your knowledge in computer science field
                             </p>
                             <div className="mt-10 flex items-center justify-center gap-x-2">
                                 <Link

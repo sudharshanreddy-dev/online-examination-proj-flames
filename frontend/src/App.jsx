@@ -27,19 +27,20 @@ function App() {
     return (
         <UserContextProvider>
             <CourseProvider>
-            <Navbar />
+
             <Toaster position="bottom-right" toastOptions={{ duration: 3000 }} />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/test" element={<Test />} />
-                <Route path="/exam" element={<Exam />} />
-                <Route path="/result" element={<Result />} />
-                {/*<Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />*/}
-                {/*<Route path="/test" element={<PrivateRoute><Test /></PrivateRoute>} />*/}
-                {/*<Route path="/exam" element={<PrivateRoute><Exam /></PrivateRoute>} />*/}
+                {/*<Route path="/dashboard" element={<Dashboard />} />*/}
+                {/*<Route path="/test" element={<Test />} />*/}
+                {/*<Route path="/exam" element={<Exam />} />*/}
+                {/*<Route path="/results" element={<Result />} />*/}
+                <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+                <Route path="/test" element={<PrivateRoute><Test /></PrivateRoute>} />
+                <Route path="/exam" element={<PrivateRoute><Exam /></PrivateRoute>} />
+                <Route path="/results" element={<PrivateRoute><Result /></PrivateRoute>} />
             </Routes>
             </CourseProvider>
         </UserContextProvider>

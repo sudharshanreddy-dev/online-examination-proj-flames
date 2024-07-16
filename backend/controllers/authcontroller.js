@@ -67,7 +67,11 @@ const loginUser = async (req, res) => {
         const token = jwt.sign({ email: user.email, id: user._id, name: user.name }, process.env.JWT_SECRET, {});
 
         console.log('Setting token cookie');
-        res.cookie('token', token, { httpOnly: true, secure: true});
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'None'
+        });
 
         console.log('Sending user response');
         return res.status(200).json({ message: "Login successful", user });
@@ -77,6 +81,7 @@ const loginUser = async (req, res) => {
         return res.status(500).json({ message: "Internal server error" });
     }
 }
+
 
 const getProfile = (req, res) => {
     const { token } = req.cookies;
@@ -90,6 +95,15 @@ const getProfile = (req, res) => {
     }
 }
 
+const logout = (req, res) => {
+    res.clearCookie('token', {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'None'
+    });
+    return res.status(200).json({ message: "Logout successful" });
+}
+
 module.exports = {
-    test, registerUser, loginUser, getProfile
+    test, registerUser, loginUser, getProfile, logout
 }

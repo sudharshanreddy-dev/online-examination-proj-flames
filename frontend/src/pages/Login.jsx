@@ -3,6 +3,7 @@ import axios from "axios";
 import {toast} from "react-hot-toast";
 import {useNavigate,Link} from "react-router-dom";
 import {Logo} from "../components/Logo.jsx";
+import {Navbar} from "../components/Navbar.jsx";
 export function Login() {
 
     const navigate = useNavigate()
@@ -22,9 +23,9 @@ export function Login() {
                 withCredentials: true
             });
             console.log('Login request successful.');
-            toast.success(response.data.message);
             setData({email: '', password: ''});
-            navigate('/dashboard', { replace: true });
+           await navigate('/dashboard', { replace: true });
+            toast.success(response.data.message);
         } catch (error) {
             console.log('Error occurred during login:', error);
             if (error.response && (error.response.status === 404 || error.response.status === 409)) {
@@ -44,6 +45,7 @@ export function Login() {
 
     return (
         <>
+            <Navbar />
             <div className="min-h-screen flex items-center justify-center bg-gray-100">
                 <div className="max-w-md w-full bg-white p-8 shadow-lg rounded-lg">
                     <div className="flex justify-center mb-6">

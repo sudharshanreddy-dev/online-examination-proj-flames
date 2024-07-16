@@ -1,7 +1,7 @@
 import {useContext} from "react";
 import {UserContext} from "../../context/userContext.jsx";
 import {Link} from "react-router-dom";
-import { Copy, Code, Heart } from 'lucide-react'
+import {NavbarLog} from "../components/NavbarLog.jsx";
 export function Dashboard() {
     const {user} = useContext(UserContext);
     return (
@@ -10,6 +10,8 @@ export function Dashboard() {
             {/*{!!user && <p>hi {user.name}</p>}*/}
 
             {/*<Link to="/test">test</Link>*/}
+
+            <NavbarLog/>
 
             <section>
                 <div className="mx-auto max-w-7xl px-2 lg:px-8">
@@ -22,11 +24,7 @@ export function Dashboard() {
                     <hr/>
                     <div className="mt-8 grid grid-cols-1 items-center gap-6 md:grid-cols-2 lg:grid-cols-3">
                         <div className="flex items-start">
-                            {/*<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5"*/}
-                            {/*     stroke="currentColor" className="w-16 h-16">*/}
-                            {/*    <path strokeLinecap="round" strokeLinejoin="round"*/}
-                            {/*          d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25"/>*/}
-                            {/*</svg>*/}
+
                             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
                                  className="bi bi-laptop" viewBox="0 0 16 16">
                                 <path
@@ -46,6 +44,11 @@ export function Dashboard() {
                                 </div>
                             </div>
                         </div>
+
+
+
+
+
                         <div className="flex items-start">
                             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
                                  className="bi bi-bar-chart" viewBox="0 0 16 16">
@@ -65,6 +68,10 @@ export function Dashboard() {
                                 </div>
                             </div>
                         </div>
+
+
+
+
 
                     </div>
                 </div>
