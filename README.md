@@ -1,83 +1,74 @@
-Project Name
-Description
-A brief description of your project. Include the purpose, main features, and technologies used.
+# Project Setup
 
-Prerequisites
-Node.js (v12.x or higher)
-npm (comes with Node.js)
-Visual Studio Code
-MongoDB Compass
-MongoDB server running locally or accessible remotely
-Getting Started
-Clone the Repository
-bash
-Copy code
-git clone https://github.com/yourusername/your-repository.git
-cd your-repository
-Open the Project in Visual Studio Code
-Open Visual Studio Code.
-Go to File > Open Folder and select the cloned repository folder.
-Open Two Terminals in VS Code
-Open the first terminal:
+This guide will help you set up and run the project using Visual Studio Code (VS Code). It includes instructions for starting both the frontend and backend services, and setting up the MongoDB database.
 
-Go to Terminal > New Terminal.
-In the terminal, navigate to the frontend directory:
-bash
-Copy code
-cd frontend
-Run the frontend development server:
-bash
-Copy code
-npm install
-npm run dev
-Open the second terminal:
+## Prerequisites
 
-Go to Terminal > Split Terminal (or open a new terminal if you prefer).
-In the new terminal, navigate to the backend directory:
-bash
-Copy code
-cd backend
-Run the backend server:
-bash
-Copy code
-npm install
-npm start
-Set Up MongoDB
-Open MongoDB Compass.
-Connect to your local MongoDB server.
-Create a new database:
-Database Name: user-cred
-Add a new collection:
-Collection Name: cse
-Insert the provided user-cread.cse.json file into the cse collection:
-Click on the cse collection.
-Click on Add Data > Import File.
-Select the user-cread.cse.json file and import it.
-Run the Application
-Your frontend should be running on http://localhost:8000 (or the port specified in your frontend configuration).
-Your backend should be running on http://localhost:5173 (or the port specified in your backend configuration).
-Directory Structure
-css
-Copy code
-your-repository/
-│
-├── frontend/          # Frontend code
-│   ├── public/
-│   ├── src/
-│   ├── package.json
-│   └── ...
-│
-├── backend/           # Backend code
-│   ├── src/
-│   ├── package.json
-│   └── ...
-│
-├── user-cread.cse.json
-├── README.md
-└── ...
-Troubleshooting
-If you encounter issues with dependencies, ensure you have the correct versions of Node.js and npm.
-Verify MongoDB is running and accessible.
-Check your frontend and backend configurations for correct ports and settings.
-Contributing
-Contributions are welcome! Please fork the repository and create a pull request with your changes.
+Ensure you have the following installed:
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [Node.js](https://nodejs.org/)
+- [MongoDB Compass](https://www.mongodb.com/products/compass)
+
+## Setup Instructions
+
+1. **Open the Project in VS Code**
+
+   - Open Visual Studio Code.
+   - Open your project folder by selecting `File` > `Open Folder...` and choosing the project directory.
+
+2. **Open Two Terminals**
+
+   - Open the terminal in VS Code by selecting `Terminal` > `New Terminal` from the top menu.
+   - You will need two terminals. You can open another terminal by clicking on the `+` icon in the terminal panel or by using the keyboard shortcut ``Ctrl+Shift+` ``.
+
+3. **Navigate to the Frontend Directory**
+
+   - In the first terminal, navigate to the frontend directory:
+     ```bash
+     cd frontend
+     ```
+
+4. **Start the Frontend**
+
+   - Run the following command to start the frontend development server:
+     ```bash
+     npm run dev
+     ```
+
+5. **Navigate to the Backend Directory**
+
+   - In the second terminal, navigate to the backend directory:
+     ```bash
+     cd backend
+     ```
+
+6. **Start the Backend**
+
+   - Run the following command to start the backend server:
+     ```bash
+     npm start
+     ```
+
+7. **Set Up MongoDB Compass**
+
+   - Open MongoDB Compass.
+   - Connect to your MongoDB instance.
+
+8. **Create a Database and Collection**
+
+   - Create a new database named `user-cred`.
+   - Within the `user-cred` database, create a collection named `cse`.
+
+9. **Import Data**
+
+   - Import the `user-cread.cse.json` file into the `cse` collection:
+     - Click on the `Collection` tab for `cse`.
+     - Select the `Import Data` button.
+     - Choose `JSON` format and upload the `user-cread.cse.json` file.
+
+## Additional Information
+
+- Ensure that both the frontend and backend services are running for the application to function properly.
+- Check the respective terminal output for any errors or issues during the startup.
+
+For further assistance, refer to the project's documentation or contact the development team.
