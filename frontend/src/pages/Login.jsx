@@ -1,13 +1,18 @@
-import {useState} from "react";
+import {useContext, useState} from "react";
 import axios from "axios";
 import {toast} from "react-hot-toast";
 import {useNavigate,Link} from "react-router-dom";
 import {Logo} from "../components/Logo.jsx";
 import {Navbar} from "../components/Navbar.jsx";
+import {UserContext} from "../../context/userContext.jsx";
+import {usePrivate} from "../../context/PrivateRoute.jsx";
+
 export function Login() {
 
     const navigate = useNavigate()
     const [data, setData] = useState({email: '', password: ''})
+    const { setPermission } = usePrivate();
+    const {fetchUserProfile} = useContext(UserContext)
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -19,12 +24,17 @@ export function Login() {
     const loginUser = async () => {
         try {
             console.log('Sending login request...');
-            const response = await axios.post('/login', data,{
+            const response = await axios.post('/login', data, {
                 withCredentials: true
             });
             console.log('Login request successful.');
-            setData({email: '', password: ''});
-           await navigate('/dashboard');
+            await setData({ email: '', password: '' });
+            await fetchUserProfile()
+            // Set the permission to true
+            setPermission(true);
+
+            // Navigate to the dashboard
+            await navigate('/dashboard');
             toast.success(response.data.message);
         } catch (error) {
             console.log('Error occurred during login:', error);
@@ -35,7 +45,7 @@ export function Login() {
                 console.log('Unexpected error:', error);
             }
         }
-    }
+    };
 
 
     function handleSubmit(e) {

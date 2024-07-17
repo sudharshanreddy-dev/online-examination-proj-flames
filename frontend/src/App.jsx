@@ -7,7 +7,7 @@ import { Login } from "./pages/Login.jsx";
 import { Register } from "./pages/Register.jsx";
 import axios from "axios";
 import { Toaster } from "react-hot-toast";
-import { PrivateRoute } from "../context/PrivateRoute.jsx";
+import { PrivateRoute , PrivateProvider } from "../context/PrivateRoute.jsx";
 import { Dashboard } from "./pages/Dashboard.jsx";
 import {Test} from "./pages/Test.jsx";
 import {CourseProvider} from "../context/courseContext.jsx";
@@ -25,9 +25,10 @@ function App() {
 
     return (
         <UserContextProvider>
-            <CourseProvider>
 
             <Toaster position="bottom-right" toastOptions={{ duration: 3000 }} />
+                <PrivateProvider>
+            <CourseProvider>
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/register" element={<Register />} />
@@ -42,6 +43,7 @@ function App() {
                 <Route path="/results" element={<PrivateRoute><Result /></PrivateRoute>} />
             </Routes>
             </CourseProvider>
+                </PrivateProvider>
         </UserContextProvider>
     )
 }

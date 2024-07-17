@@ -1,38 +1,38 @@
 import { useNavigate } from "react-router-dom";
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 import axios from "axios";
 
 export const UserContext = createContext({});
 
 export function UserContextProvider({ children }) {
-    const [loading, setLoading] = useState(true); // Add loading state
+    const [loading, setLoading] = useState(true);
     const [user, setUser] = useState(() => {
-        // Initialize state from local storage if available
         const savedUser = localStorage.getItem('user');
         return savedUser ? JSON.parse(savedUser) : null;
     });
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (!user) {
-            axios.get('./profile')
-                .then(({ data }) => {
-                    setUser(data);
-                })
-                .catch(error => {
-                    console.error('Error fetching profile:', error);
-                })
-                .finally(() => {
-                    setLoading(false); // Set loading to false after fetching
-                });
-        } else {
-            setLoading(false); // If user is already set, stop loading
+    const fetchUserProfile = async () => {
+        try {
+            const { data } = await axios.get('/profile');
+            setUser(data);
+        } catch (error) {
+            console.error('Error fetching profile:', error);
+        } finally {
+            setLoading(false);
         }
-    }, []); // Empty dependency array to run only once on mount
+    };
 
     useEffect(() => {
-        // Update local storage whenever the user changes
+        if (!user) {
+            fetchUserProfile();
+        } else {
+            setLoading(false);
+        }
+    }, []);
+
+    useEffect(() => {
         if (user) {
             localStorage.setItem('user', JSON.stringify(user));
         } else {
@@ -47,6 +47,7 @@ export function UserContextProvider({ children }) {
             localStorage.removeItem('user');
             localStorage.removeItem('answers');
             localStorage.removeItem('selectedCourse');
+            localStorage.removeItem('permission');
             sessionStorage.clear();
             navigate('/login');
             setTimeout(() => {
@@ -58,8 +59,10 @@ export function UserContextProvider({ children }) {
     };
 
     return (
-        <UserContext.Provider value={{ user, setUser, logout, loading }}>
+        <UserContext.Provider value={{ user, setUser, logout, loading, fetchUserProfile }}>
             {children}
         </UserContext.Provider>
     );
 }
+
+

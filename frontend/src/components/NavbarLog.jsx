@@ -9,6 +9,7 @@ export const NavbarLog = () => {
     const { logout } = useContext(UserContext);
 
     const handleLogout = () => {
+
         logout();
     };
     return (
