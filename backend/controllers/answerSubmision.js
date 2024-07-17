@@ -1,6 +1,6 @@
-const {run} = require('../helpers/ai')
-const {connection} = require('mongoose')
-const {saveTestResult} = require('../helpers/saveTest')
+const { run } = require('../helpers/ai');
+const { connection } = require('mongoose');
+const { saveTestResult } = require('../helpers/saveTest');
 
 /**
  * Handles the submission of answers for a course.
@@ -11,18 +11,12 @@ const {saveTestResult} = require('../helpers/saveTest')
 const answerSubmission = async (req, res) => {
     // Extract course and answers from the request
     const { course } = req.query;
-    const { answers } = req.body;
+    const { answers, user } = req.body; // Ensure user is extracted from req.body
 
     // Log course and answers for debugging
     console.log("course:", course);
     console.log("answers:", answers);
-    // Define the user for submission
-    const user = req.query.user.email;
-
-    // Log course, answers, and user for debugging
-    console.log("course:", course);
-    console.log("answers:", answers);
-    console.log("user:", user);
+    console.log("user:", user.email);
 
     // Access the 'cse' collection
     const collection = await connection.collection('cse');
@@ -47,7 +41,7 @@ const answerSubmission = async (req, res) => {
 
     // Calculate the total marks
     let total_marks = 0;
-    for(let i = 0; i < marksArray.length; i++) {
+    for (let i = 0; i < marksArray.length; i++) {
         total_marks += marksArray[i];
     }
 
@@ -58,10 +52,9 @@ const answerSubmission = async (req, res) => {
     console.log(marksArray);
 
     // Save the test result for the user
-    saveTestResult(user, course, total_marks);
+    saveTestResult(user.email, course, total_marks);
 
-    return res.json ({message:"submitted successfully"});
-}
+    return res.json({ message: "submitted successfully" });
+};
 
-
-module.exports = {answerSubmission}
+module.exports = { answerSubmission };
